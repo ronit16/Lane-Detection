@@ -48,6 +48,7 @@ class FindLaneLines:
 
     def process_image(self, input_path, output_path):
         img = mpimg.imread(input_path)
+        img = cv2.resize(img, (1280, 720))
         out_img = self.forward(img)
         mpimg.imsave(output_path, out_img)
 
