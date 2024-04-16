@@ -31,9 +31,6 @@ class CameraCalibration():
         for f in fnames:
             img = mpimg.imread(f)
 
-            # Convert to grayscale image
-            gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-
             # Find chessboard corners
             ret, corners = cv2.findChessboardCorners(img, (nx, ny))
             if ret:
@@ -56,5 +53,4 @@ class CameraCalibration():
             Image (np.array): Undistorted image
         """
         # Convert to grayscale image
-        gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         return cv2.undistort(img, self.mtx, self.dist, None, self.mtx)
