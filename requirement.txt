@@ -4,3 +4,4 @@ opencv-python
 docopt
 IPython
 moviepy
+streamlit
