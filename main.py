@@ -36,14 +36,39 @@ class FindLaneLines:
 
     def forward(self, img):
         out_img = np.copy(img)
+        #plot the image img
+        # cv2.imshow('img', img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         img = self.calibration.undistort(img)
+        # cv2.imshow('undistort', img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         img = self.transform.forward(img)
+        # cv2.imshow('transform', img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         img = self.thresholding.forward(img)
+        # cv2.imshow('thresholding', img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         img = self.lanelines.forward(img)
+        # cv2.imshow('lanelines', img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         img = self.transform.backward(img)
+        # cv2.imshow('backward', img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
 
         out_img = cv2.addWeighted(out_img, 1, img, 0.6, 0)
+        # cv2.imshow('out_img', out_img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         out_img = self.lanelines.plot(out_img)
+        # cv2.imshow('plot', out_img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         return out_img
 
     def process_image(self, input_path, output_path):
